@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Assignment</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/transitions.css">
+  <link rel="icon" href="assets/pds.png">
+  <link rel="stylesheet" href="css/menu.css">
+  <script src="scripts/menu-highlight.js"></script>
+
+  <script src="scripts/script.js"></script>
+
+
+</head>
+<body>
+
+
+  <body>
+    <div class="menu">
+      <div class="menulogo">
+        <img src="assets/menulogo.png" alt="Logo">
+      </div>
+      <nav>
+        <div class="borders">
+          <a href="upload.html">Home</a>
+        </div>
+        <div class="submenu-container">
+          <a href="#">Assignments</a>
+          <div class="submenu">
+            <a href="viewAssignments.html">View Assignments</a>
+            <a href="createAssignment.html">Create Assignment</a>
+          </div>
+        </div>
+        <div class="submenu-container">
+          <a href="#">Users</a>
+          <div class="submenu">
+            <a href="viewUsers.html">View Users</a>
+            <a href="createNewUser.html">Create User</a>
+          </div>
+        </div>
+        <div class="submenu-container">
+          <a href="#fourth">Modules</a>
+          <div class="submenu">
+            <a href="viewModules.html">View Modules</a>
+
+            <a href="createNewModule.html">Create Modules</a>
+          </div>
+        </div>
+        <div class="borders">
+          <a href="#fifth">Settings</a>
+        </div>
+  
+      </nav>
+      <div class="profile-container">
+        <img class="profile-icon" src="assets\149071.png" alt="Profile Picture">
+        <span class="username">John Doe</span>
+        <span class="ellipsis-menu">...</span>
+      </div>  
+    </div>
+  
+
+
+  
+    <div class="cont">
+      <form>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="module">Module:</label>
+        <select id="module" name="module" required>
+          <option value="cpp">C++ Programming</option>
+          <option value="ds">Distributed Systems</option>
+        </select>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="due-date">Due Date:</label>
+        <input type="date" id="due-date" name="due-date" required>
+
+        <label for="file-type">File Type:</label>
+        <select id="file-type" name="file-type" required>
+          <option value="python">Python</option>
+          <option value="c">C</option>
+          <option value="java">Java</option>
+        </select>
+
+        <button class="SubButton" type="submit">Create Assignment</button>
+      </form>
+    </div>
+</body>
+</html>

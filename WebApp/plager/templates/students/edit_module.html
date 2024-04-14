@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<ul class="flashes">
+    <h1 class="font-semibold text-3xl text-white mb-2">Edit Module: {{ module.title }}</h1>
+    <hr class="mb-4">
+</ul>
+
+<div class="cont flex flex-col justify-start items-start p-4" style="overflow-y: scroll;">
+
+    <form method="POST" class="module-form w-full">
+        {{ module_form.hidden_tag() }}
+
+        <div class="flex flex-row justify-between items-center w-full">
+            <div class="w-full mr-3">
+                {{ module_form.title.label}}
+                {{ module_form.title(style='margin-bottom: 0;') }}    
+            </div>
+            <div class="w-full mr-3">
+                {{ module_form.module_code.label}}
+                {{ module_form.module_code(style='margin-bottom: 0;') }}
+            </div>
+            {{ module_form.submit(class='module-form-button mt-auto', style='margin-left: 0;', value="Update") }}
+        </div>
+        
+    </form>
+
+    <hr class="my-3 w-full">
+
+    <h3 class="text-2xl font-semibold mb-2">Enrolled Students</h3>
+    
+    <form method="POST" class="module-form w-full mb-2">
+        {{ add_student_form.hidden_tag() }}
+
+        <div class="flex flex-row justify-between items-center w-full">
+            <div class="w-full mr-3">
+                <label for="email">Add Student by Email</label>
+                {{ add_student_form.email(style='margin-bottom: 0;') }}    
+            </div>
+            {{ add_student_form.submit(class='module-form-button mt-auto', style='margin-left: 0;', value="Add") }}
+        </div>
+    </form>
+
+    {% if module.enrollments %}
+        <table class="table-auto w-full text-left">
+            <tr>
+                <th scope="col" class="p-2">Student ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Remove</th>
+            </tr>
+            {% for enrollment in module.enrollments %}
+                <tr class="transition-all">
+                    <td scope="row" class="p-2 rounded-l-md">{{ enrollment.users.id }}</td>
+                    <td>{{ enrollment.users.name }}</td>
+                    <td>{{ enrollment.users.email }}</td>
+                    <td>
+                        <a href="{{ url_for('students.remove_student_from_module', module_id=module.id, user_id=enrollment.users.id) }}" class="py-2 px-3 rounded-md mr-2 bg-red-600 text-white hover:bg-red-400 transition-all">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+    <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+        No students are enrolled to this module.
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

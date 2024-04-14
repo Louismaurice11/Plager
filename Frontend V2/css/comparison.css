@@ -1,0 +1,123 @@
+.comparison-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 7%;
+    margin-left: 7%;
+
+}
+
+.comparison-flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 67%;
+}
+
+.comparison_container_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
+    width: 35em;
+    height: 43em;
+    background: #FFFFFF;
+    border-radius: 90px;
+    box-shadow: 0 20px 20px -3px rgba(0, 0, 0, 0.311), 0 4px 6px -4px rgba(0, 0, 0, 0.311);
+}
+
+.comparison_container_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
+    width: 35em;
+    height: 43em;
+    background: #FFFFFF;
+    border-radius: 90px;
+    box-shadow: 0 20px 20px -3px rgba(0, 0, 0, 0.311), 0 4px 6px -4px rgba(0, 0, 0, 0.311);
+}
+
+.comparison-heading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
+.code {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 120em;
+    width: 30em;
+    border-radius: 60px;
+
+}
+
+.codecont {
+
+    margin-top: 25px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.codecont::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    background: transparent;
+
+}
+
+.codecont::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.codecont::-webkit-scrollbar-track {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+

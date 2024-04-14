@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create New User</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/transitions.css">
+        <link rel="stylesheet" href="css/menu.css">
+        <script src="scripts/menu-highlight.js"></script>
+
+
+        <script src="scripts/script.js"></script>
+
+
+    </head>
+    <body>
+        <body>
+            <div class="menu">
+              <div class="menulogo">
+                <img src="assets/menulogo.png" alt="Logo">
+              </div>
+              <nav>
+                <div class="borders">
+                    <a href="upload.html">Home</a>
+                </div>
+                <div class="submenu-container">
+                  <a href="#">Assignments</a>
+                  <div class="submenu">
+                    <a href="viewAssignments.html">View Assignments</a>
+                    <a href="createAssignment.html">Create Assignment</a>
+                  </div>
+                </div>
+                <div class="submenu-container">
+                  <a href="#">Users</a>
+                  <div class="submenu">
+                    <a href="viewUsers.html">View Users</a>
+                    <a href="createNewUser.html">Create User</a>
+                  </div>
+                </div>
+                <div class="submenu-container">
+                  <a href="#fourth">Modules</a>
+                  <div class="submenu">
+                    <a href="viewModules.html">View Modules</a>
+
+                    <a href="createNewModule.html">Create Modules</a>
+                  </div>
+                </div>
+                <div class="borders">
+                  <a href="#fifth">Settings</a>
+                </div>
+          
+              </nav>
+              <div class="profile-container">
+                <img class="profile-icon" src="assets\149071.png" alt="Profile Picture">
+                <span class="username">John Doe</span>
+                <span class="ellipsis-menu">...</span>
+              </div>  
+            </div>
+        
+        <div class="cont">
+            <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="input-box">
+                                    <label for="FirstName">First Name:</label>
+                                    <input type="text" id="FirstName" name="First Name" placeholder="Enter your first name" required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-box">
+                                    <label for="LastName">Last Name:</label>
+                                    <input type="text" id="LastName" name="Last Name" placeholder="Enter your last name" required>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-box">
+                                    <label for="Email">Email:</label>
+                                    <input type="email" id="Email" name="Email" placeholder="Enter your email" required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-box">
+                                    <label for="ConfirmEmail">Confirm Email:</label>
+                                    <input type="email" id="ConfirmEmail" name="Confirm Email" placeholder="Confirm your email" required>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="School">School:</label>
+                                <select name="school" id="school">
+                                    <option value="" disabled selected>Select a school</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Economics">Economics</option>
+                                    <option value="Mathematics">Mathematics</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="Role">Role:</label>
+                                <select name="role" id="role">
+                                    <option value="" disabled selected>Select a role</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Staff">Staff</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-box">
+                                    <label for="Password">Password:</label>
+                                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-box">
+                                    <label for="ConfirmPassword">Confirm Password:</label>
+                                    <input type="password" id="ConfirmPassword" name="Confirm assword" placeholder="Confirm your password" required>
+                                </div>
+                            </td>
+                        </tr>  
+                    </table>
+                    <button class="SubButton" type="submit">Create User</button>
+            </form>          
+        </div>
+    </body>
+</html>

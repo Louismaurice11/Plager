@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">All Modules</h1>
+<hr class="mb-4">
+
+<div class="cont">
+    <div class="listhead">
+        <label style="margin-left:7.5%;">Module Code</label>
+        <label style="margin-left:23%;">Module Name</label>
+    </div>
+    <div class="listbody">
+        <div class="assignments">
+            {% for module in modules %}
+                <div class="list-modules" data-assignment-id="1">
+                    <div class="list-moduleid">[{{ module.module_code }}]</div>
+                    <div class="list-modulename">{{ module.title }}</div>
+                    <div class="list-edit-delete">
+                        <a href="{{ url_for('students.edit_module', module_id=module.id) }}" class="edit-link">Edit</a>
+                        <span style="margin: 0 10px;">|</span>
+                        <a href="{{ url_for('students.delete_module', module_id=module.id) }}" class="delete-link">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}   
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

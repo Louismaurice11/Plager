@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transitions.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='assets/favicon.png') }}">
+
+    <title>Plager</title>
+</head>
+<body>   
+
+    <div class="container fadeIn">
+        <div class="section-1">
+            <div class=info-label>
+                <img class="logo" src="{{ url_for('static', filename='assets/pds.png') }}">
+                <label class="label2"><b>Welcome to Plager.</b> <br><br>This system was designed
+                    by students from the University of Nottingham to detect plagiarism
+                    in source code files. <br><br><br>Copyright &copy; 2023 G28
+                </label>
+            </div>
+            <div class="empty-rectangle">
+            </div>
+        </div>
+        <div class="section-2">
+
+            <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            
+        
+            <div class="login-section">
+                <form method = "POST">
+                    {{ login_form.hidden_tag() }}
+
+                    {{ login_form.email.label(class="usernamelabel") }}
+                    {{ login_form.email }}
+                    
+                    {{ login_form.password.label(class="passlabel") }}
+                    {{ login_form.password(class="passentry") }}
+                    
+                    <button class="loginButton" type="submit">Login</button>
+                    <a class="registerButton" href="{{ url_for('auth.gitlab_login') }}">Login with Gitlab.com</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

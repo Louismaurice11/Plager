@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">All Assignments</h1>
+<hr class="mb-4">
+
+<div class="cont flex flex-col justify-start items-start p-4" style="overflow-y: scroll;">
+    
+    <h2 class="font-semibold text-2xl mb-2">Upcoming Assignments</h2>
+    {% for assignment in assignments %}
+        <div class="w-full flex flex-row justify-between items-center">
+            <div>
+                <p class="text-xl">{{ assignment.title }}  &#183;  <span class="text-gray-500">{{ assignment.modules.title }}</span></p> 
+                <p><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p>
+                <p><span class="font-semibold">Language:</span> {{ assignment.file_type.upper() }}</p>
+                <p><span class="font-semibold">Total Submissions:</span> {{ get_assignment_submissions(assignment.id)|length }}</p>
+            </div>
+            <div>
+                <a href="{{ url_for('assignments.staff_view_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">View More</a>
+                <a href="{{ url_for('students.edit_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">Edit</a>
+                <a href="{{ url_for('students.delete_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md bg-red-600 text-white hover:bg-red-400 transition-all">Delete</a>
+            </div>
+        </div>
+        <hr class="w-full my-2">
+    {% endfor %}
+    {% if not assignments %}
+        <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+            There are no upcoming assignments.
+        </div>
+    {% endif %}
+
+    <h2 class="font-semibold text-2xl mb-2 mt-5">Past Assignments</h2>
+    {% if past_assignments %}
+        {% for assignment in past_assignments %}
+            <div class="w-full flex flex-row justify-between items-center">
+                <div>
+                    <p class="text-xl">{{ assignment.title }}  &#183;  <span class="text-gray-500">{{ assignment.modules.title }}</span></p> 
+                    <p><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p>
+                    <p><span class="font-semibold">Language:</span> {{ assignment.file_type.upper() }}</p>
+                    <p><span class="font-semibold">Total Submission:</span> {{ assignment.submissions|length }}</p>
+                </div>
+                <div>
+                    <a href="{{ url_for('assignments.staff_view_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">View More</a>
+                    <a href="{{ url_for('students.edit_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">Edit</a>
+                    <a href="{{ url_for('students.delete_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md bg-red-600 text-white hover:bg-red-400 transition-all">Delete</a>
+                </div>
+            </div>
+            <hr class="w-full my-2">
+        {% endfor %}
+    {% else %}
+        <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+            There are no assignments with a due date in the past.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock content %}

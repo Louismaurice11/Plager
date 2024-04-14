@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">Assignment: {{ assignment.title }}</h1>
+<hr class="mb-4">
+
+<div class="cont flex flex-col justify-start items-start p-4" style="overflow-y: scroll;">
+    
+    <h2 class="font-semibold text-2xl mb-1">{{ assignment.title }}</h2>
+
+    <p class="text-lg text-gray-500">{{ assignment.modules.title }}</p> 
+    <p class="text-md mb-2">{{ assignment.description }}</p>
+
+    <p class="text-md"><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p> 
+    <p class="text-md mb-2"><span class="font-semibold">File Type:</span> {{ assignment.file_type.upper() }}</p>
+            
+    <hr class="my-3 w-full">
+
+    <h3 class="text-2xl font-semibold">Your Submissions</h3>
+    <p class="mb-2">Your latest submission will be considered final once the deadline passes.</p>
+    {% if submissions %}
+        <table class="table-auto w-full text-left">
+            <tr>
+                <th scope="col" class="p-2">ID</th>
+                <th>Date Submitted</th>
+                <th>File Name</th>
+                <th>Status</th>
+                <th>Score</th>
+                <th>Remove</th>
+            </tr>
+            {% for sub in submissions %}
+                <tr>
+                    <td scope="row" class="p-2 rounded-l-md">{{ sub.id }}</td>
+                    <td>{{ sub.date_submitted.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>{{ sub.filename }}</td>
+                    <td><p class="w-fit px-2 py-1 rounded-md text-green-600 bg-green-200">{{ sub.status.title() }}</p></td>
+                    <td class="text-lg rounded-r-md {% if sub.similarity_score and sub.similarity_score >=70 %} text-red-600 font-semibold {% endif %}">
+                        {% if sub.similarity_score != None %} {{ sub.similarity_score }}% {% endif %}
+                    </td>
+                    <td><a href="{{ url_for('assignments.delete_submission', submission_id=sub.id) }}" class="py-2 px-3 rounded-md bg-red-600 text-white hover:bg-red-400 transition-all">Remove</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+    <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+        You have not made a submission for this assignment.
+    </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" class="">
+        {{ upload_form.hidden_tag() }}
+        <div class="flex flex-row justify-start items-center">
+            {{ upload_form.file(class='upload-btn w-max mr-3') }}
+    
+            {{ upload_form.submit(class='module-form-button px-3 py-2', style='margin-left: 0; width: auto; height: auto;') }}
+        </div>
+    </form>
+
+</div>
+
+{% endblock content %}

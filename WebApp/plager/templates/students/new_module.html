@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<ul class="flashes">
+    <h1 class="font-semibold text-3xl text-white mb-2">Create New Module</h1>
+    <hr class="mb-4">
+</ul>
+
+
+<div class="cont-module">
+    <div class="inner-module-cont">
+        <form method="POST" class="module-form">
+            {{ module_form.hidden_tag() }}
+            {{ module_form.title.label}}
+            {{ module_form.title }}
+            {{ module_form.module_code.label}}
+            {{ module_form.module_code}}
+            {{module_form.submit (class='module-form-button')}}
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

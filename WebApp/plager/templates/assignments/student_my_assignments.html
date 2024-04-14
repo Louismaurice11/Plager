@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">My Assignments</h1>
+<hr class="mb-4">
+
+<div class="cont flex flex-col justify-start items-start p-4" style="overflow-y: scroll;">
+    
+    <h2 class="font-semibold text-2xl mb-2">Upcoming Assignments</h2>
+    {% for assignment in assignments %}
+        <div class="w-full flex flex-row justify-between items-center">
+            <div>
+                <p class="text-xl">{{ assignment.title }}  &#183;  <span class="text-gray-500">{{ assignment.modules.title }}</span></p> 
+                <p><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p>
+                <p class="mb-2"><span class="font-semibold">Language:</span> {{ assignment.file_type.upper() }}</p>
+                <p>
+                    <span class="font-semibold">Status: </span>
+                    {% if assignment.id in submitted_assignments %}
+                        <span class="w-fit px-2 py-1 rounded-md text-green-600 bg-green-200">Submitted</span>
+                    {% else %}
+                        <span class="w-fit px-2 py-1 rounded-md text-red-600 bg-red-200">Not Submitted</span>
+                    {% endif %}
+                </p>
+                {% set score = get_latest_sub_score(assignment.id, current_user.id) %}
+                {% if score != None %}
+                    <p class="mt-2">
+                        <span class="font-semibold">Score: </span>
+
+                        <span class="text-lg rounded-r-md {% if score >=70 %} text-red-600 font-semibold {% endif %}">{{ score }}%</span>
+                    </p>
+                {% endif %}
+            </div>
+            <div>
+                <a href="{{ url_for('assignments.student_view_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">View More</a>
+            </div>
+        </div>
+        <hr class="w-full my-2">
+    {% endfor %}
+
+    <h2 class="font-semibold text-2xl mb-2 mt-5">Past Assignments</h2>
+    {% if past_assignments %}
+        {% for assignment in past_assignments %}
+            <div class="w-full flex flex-row justify-between items-center">
+                <div>
+                    <p class="text-xl">{{ assignment.title }}  &#183;  <span class="text-gray-500">{{ assignment.modules.title }}</span></p> 
+                    <p><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p>
+                    <p class="mb-2"><span class="font-semibold">Language:</span> {{ assignment.file_type.upper() }}</p>
+                    <p>
+                        <span class="font-semibold">Status: </span>
+                        {% if assignment.id in submitted_assignments %}
+                            <span class="w-fit px-2 py-1 rounded-md text-green-600 bg-green-200">Submitted</span>
+                        {% else %}
+                            <span class="w-fit px-2 py-1 rounded-md text-red-600 bg-red-200">Not Submitted</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div>
+                    <a href="{{ url_for('assignments.student_view_assignment', assignment_id=assignment.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">View More</a>
+                </div>
+            </div>
+            <hr class="w-full my-2">
+        {% endfor %}
+    {% else %}
+        <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+            There are no assignments with a due date in the past.
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

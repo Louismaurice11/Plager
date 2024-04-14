@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.g28.plager.Controllers.LoginController">
+   <children>
+      <ImageView fitHeight="405.0" fitWidth="314.0" layoutX="288.0" layoutY="-1.0">
+         <image>
+            <Image url="@../Images/gradient.png" />
+         </image></ImageView>
+      <TextField fx:id="m_UsernameField" layoutX="334.0" layoutY="188.0" prefHeight="26.0" prefWidth="218.0" style="-fx-background-color: white; -fx-background-radius: 15;" styleClass="-fx-background-color" />
+      <Text fx:id="m_ApplicationTitle" fill="#fdfcfc" layoutX="83.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plager" wrappingWidth="122.255859375">
+         <font>
+            <Font name="Andale Mono" size="32.0" />
+         </font>
+      </Text>
+      <Button fx:id="m_LoginButton" layoutX="389.0" layoutY="290.0" mnemonicParsing="false" onAction="#showMainView" prefHeight="21.0" prefWidth="110.0" style="-fx-background-color: fdfcfc; -fx-background-radius: 15;" text="MySQL Login">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.33969464898109436" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <PasswordField fx:id="m_UserPasswordField" layoutX="335.0" layoutY="245.0" prefHeight="26.0" prefWidth="219.0" style="-fx-background-radius: 15; -fx-background-color: fdfcfc;" />
+      <Text fx:id="m_UserNameText" fill="WHITE" layoutX="416.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Text>
+      <Text fx:id="m_PasswordText" fill="WHITE" layoutX="417.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Text>
+      <Text layoutX="26.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Plager. This system was designed by students from the University of Nottingham to detect plagiarism in source code files." textAlignment="CENTER" wrappingWidth="236.904296875">
+         <font>
+            <Font name="Andale Mono" size="10.0" />
+         </font></Text>
+      <Text fx:id="m_IncorrectText" fill="#fdfcfc" layoutX="329.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username or Password is incorrect. Please try again." textAlignment="CENTER" visible="false" wrappingWidth="237.904296875">
+         <font>
+            <Font name="Andale Mono" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Text>
+      <ImageView fitHeight="153.0" fitWidth="192.0" layoutX="61.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/logoMuted.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="555.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/padlock.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="m_UserNameText1" fill="#fdfcfc" layoutX="402.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="97.4313777106081">
+         <font>
+            <Font name="System Bold" size="34.0" />
+         </font>
+      </Text>
+      <Button fx:id="m_ExitButton" layoutX="567.0" layoutY="367.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeApplication" prefHeight="23.0" prefWidth="24.0" style="-fx-background-color: transparent;" />
+      <ImageView fitHeight="48.0" fitWidth="65.0" layoutX="647.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../Images/exit.png" />
+      </ImageView>
+      <Text layoutX="106.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plager" wrappingWidth="90.9775390625">
+         <font>
+            <Font name="Andale Mono" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="m_EnterApp" layoutX="390.0" layoutY="318.0" mnemonicParsing="false" onAction="#showMainViewWithoutLogin" prefHeight="21.0" prefWidth="110.0" style="-fx-background-color: fdfcfc; -fx-background-radius: 15;" text="Enter Application">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.33969464898109436" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

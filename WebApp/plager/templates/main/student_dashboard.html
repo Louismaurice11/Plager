@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">Student Dashboard</h1>
+<hr class="mb-4">
+
+<div class="grid gap-4 md:grid-cols-2 md:grid-rows-1 mt-5">
+
+    <div class="bg-white rounded-md drop-shadow-md p-3">
+        <h2 class="font-semibold text-2xl mb-2">Upcoming Assignments</h2>
+
+        <ul class="mb-4">
+            {% for assignment in assignments[:5] %}
+                <li>
+                    <p>{{ assignment.title }} &#183; <span class="text-gray-500">{{ assignment.modules.title }}</span></p> 
+                    <p><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p>
+                    <a href="{{ url_for('assignments.student_view_assignment', assignment_id=assignment.id) }}" class="text-cyan-600 hover:text-cyan-400 transition-all">View More</a>
+                    <hr class="my-2">
+                </li>
+            {% endfor %}
+            {% if not assignments %}
+                <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+                    You have no upcoming assignments.
+                </div>
+            {% endif %}
+        </ul>
+
+        <div class="flex justify-end">
+            <a href="{{ url_for('assignments.student_my_assignments') }}" class="bg-cyan-500 text-white px-5 py-1 rounded-full hover:bg-cyan-700 transition-all">View All</a>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-md drop-shadow-md p-3">
+        <h2 class="font-semibold text-2xl mb-2">Latest Submissions</h2>
+
+        <ul class="mb-4">
+            {% for submission in submissions[:5] %}
+                <li>
+                    <p>{{ submission.users.name }} &#183; <span class="text-gray-500">{{ submission.assignments.title }}</span></p>
+                    {% if submission.similarity_score %}
+                        <p>Score: <span class="{% if submission.similarity_score >= 70 %}text-red-500{% endif %}">{{ submission.similarity_score }}%</span></p>
+                    {% endif %}
+                    <a href="{{ url_for('assignments.student_view_assignment', assignment_id=submission.assignment_id) }}" class="text-cyan-600 hover:text-cyan-400 transition-all">View Submission</a>
+                    <hr class="my-2">
+                </li>
+            {% endfor %}
+            {% if not submissions %}
+                <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+                    You have not made any submissions.
+                </div>
+            {% endif %}
+        </ul>
+    </div>
+
+</div>
+
+{% endblock content %}

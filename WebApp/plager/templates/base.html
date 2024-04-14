@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" style="height: -webkit-fill-available;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transitions.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comparison.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+    <script src="{{ url_for('static', filename='js/menu-highlight.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <link rel="icon" href="{{ url_for('static', filename='assets/favicon.png') }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: '#da373d',
+            }
+          }
+        }
+      }
+    </script>
+
+    <title>Plager</title>
+</head>
+<body class="min-h-screen">
+
+    <div class="h-full w-full flex flex-row">
+
+      <!-- SIDEBAR -->
+      <div class="h-screen fixed flex flex-col justify-between items-center w-60">
+        
+        <div class="w-full">
+          <a class="menulogo" href="{{ url_for('main.home') }}">
+            <img src="{{ url_for('static', filename='assets/menulogo.png') }}" alt="Logo">
+          </a>
+          <nav class="px-4">
+            {% if current_user.role == "staff" %}
+              <div class="borders">
+                <a href="{{ url_for('main.staff_dashboard') }}" class="{% if '/dashboard' in request.path %}current{% endif %}">Dashboard</a>
+              </div>
+              <div class="borders">
+                <a href="{{ url_for('direct.compare') }}" class="{% if '/compare' in request.path %}current{% endif %}">Compare</a>
+              </div>
+              <div class="submenu-container {% if '/assignments' in request.path %}open{% endif %}">
+                <a href="#" class="{% if '/assignments' in request.path %}current{% endif %}">Assignments</a>
+                <div class="submenu">
+                  <a href="{{ url_for('assignments.staff_all_assignments') }}">View Assignments</a>
+                  <a href="{{ url_for('students.create_assignment') }}">Create Assignment</a>
+                </div>
+              </div>
+              <div class="submenu-container {% if '/modules' in request.path %}open{% endif %}">
+                <a href="#" class="{% if '/modules' in request.path %}current{% endif %}">Modules</a>
+                <div class="submenu">
+                  <a href="{{ url_for('students.view_all_modules') }}">Manage Modules</a>
+                  <a href="{{ url_for('students.create_module') }}">Create Module</a>
+                </div>
+              </div>
+              <div class="submenu-container {% if '/users' in request.path %}open{% endif %}">
+                <a href="#" class="{% if '/users' in request.path %}current{% endif %}">Users</a>
+                <div class="submenu">
+                  <a href="{{ url_for('auth.view_all_users') }}">View Users</a>
+                </div>
+              </div>
+            {% else %}
+                <div class="borders">
+                  <a href="{{ url_for('main.student_dashboard') }}" class="{% if '/dashboard' in request.path %}current{% endif %}">Dashboard</a>
+                </div>
+                <div class="borders">
+                  <a class="{% if 'assignment' in request.path %}current{% endif %}" href="{{ url_for('assignments.student_my_assignments') }}">Assignments</a>
+                </div>
+                <div class="borders">
+                  <a class="{% if 'modules' in request.path %}current{% endif %}" href="{{ url_for('students.student_my_modules') }}">Modules</a>
+                </div>
+            {% endif %}
+          </nav>
+        </div>
+
+
+        <div class="p-2 w-full">
+
+          <div class="mb-5 bg-cyan-200 rounded-md p-3">
+            <p class="text-cyan-600 text-center">
+              <span class="font-semibold">Demo</span> &#183; You are currently viewing as a <span class="font-semibold">{{ current_user.role.title() }}</span> user.</p>
+          </div>
+
+          <div class="bg-white w-full rounded-full flex flex-row justify-between items-center p-2">
+            <img class="profile-icon mr-1" src="{{ url_for('static', filename='assets/149071.png') }}" alt="Profile Picture">
+            <p class="mr-1"><span class="font-semibold">{{ current_user.name }}</span><br>{{ current_user.role.title() }}</p>
+            <button onclick="toggle_items()" class="flex items-center">
+              <span class="material-symbols-rounded">more_horiz</span>
+              <div id="items" class="absolute bg-white drop-shadow-md rounded-md p-4 left-36 bottom-12 hidden">
+                <a href="{{ url_for("auth.logout") }}" class="hover:text-cyan-800">Log Out</a>
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="w-full h-full p-5 ml-60">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              {% if category == 'danger' %}
+                <div class="rounded-md bg-red-500 px-6 mb-3 py-2.5 sm:px-3.5">
+              {% else %}
+                <div class="rounded-md bg-green-500 px-6 mb-3 py-2.5 sm:px-3.5">
+              {% endif %}
+              <p class="text-sm leading-6 text-white">
+                <div class="flashed-messages" role="alert">{{ message }}</div>
+              </p>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+
+        {% block content %}{% endblock content %}
+
+      </div>
+
+    </div>
+
+    <script>
+      function toggle_items() {
+          $('#items').toggleClass('hidden');
+      }
+    </script>
+    
+</body>
+</html> 

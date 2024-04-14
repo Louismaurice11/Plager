@@ -1,0 +1,1 @@
+functionthatchecksifayearisaleapyeardefis_leap(year):returnyear%4==0and(year%100!=0oryear%400==0)xampleyear=2020ifis_leap(year):print(f"The year {year} is a leap year")else:print(f"The year {year} is not a leap year")

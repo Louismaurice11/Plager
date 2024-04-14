@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">Direct File Comparison</h1>
+<hr class="mb-4">
+
+<div class="cont-compare">
+    <div class="upload-files-cont">
+        <form method="POST" enctype="multipart/form-data" class="upload-file-form">
+            {{ direct_form.hidden_tag() }}
+    
+            <div class="upload-container">
+                <div class="file-upload">
+                    <img class="file-icon" src="{{ url_for('static', filename='assets/folder-icon.png') }}" alt="Folder Icon">
+                    {{ direct_form.file1(class="upload-btn", onchange="showFileType(this)") }}
+                </div>
+                <div>
+                    {% if direct_form.file1.errors %}
+                    {% for error in direct_form.file1.errors %}
+                        <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            
+            <div class="upload-container">
+                <div class="file-upload">
+                    <img class="file-icon" src="{{ url_for('static', filename='assets/folder-icon.png') }}" alt="Folder Icon">
+                    {{ direct_form.file2(class="upload-btn", onchange="showFileType(this)") }}
+                </div>
+                <div>
+                    {% if direct_form.file2.errors %}
+                    {% for error in direct_form.file2.errors %}
+                        <p style="color: red; margin-bottom: 0;">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            {{ direct_form.submit(class='SubButton') }}
+        </form>
+    </div>
+    
+    <div class="see-comparison-cont">
+        {% if data['live'] %}
+        
+                <div class="comparison-score">
+                    <div id="score" class="alert-primary">Similarity Score: </div>
+                    <div id="spinner" class="spinner-border text-primary" role="status"></div>
+                </div>
+                
+                <script>
+                    const url="/direct?file1={{ data['file1'] }}&file2={{ data['file2'] }}";
+                    //const url1="/lines?filename={{ data['file1'] }}";
+                    //const url2="/lines?filename={{ data['file2'] }}";
+        
+                    function display_score(data, container) {
+                        $(container).append( data['score'].toFixed(2) + "%" );
+                    }
+        
+                    function display_lines(data, container) {
+                        $.each(data, function(index, value) {
+                            if(value[1] == true) {
+                                var element = $("<pre style='margin: 0; font-size: 10px; color: blue;'></pre>")
+                                $(element).text(value[0]);
+                                $(container).append(element);
+                            } else {
+                                var element = $("<pre style='margin: 0; font-size: 10px;'></pre>")
+                                $(element).text(value[0]);
+                                $(container).append(element);
+                            }
+                            
+                        })
+                    }
+
+                    function display_no_matches(container) {
+                        var element = $("<div class='rounded-md bg-cyan-500 px-6 mb-3 py-2.5 sm:px-3.5'><p class='text-sm leading-6 text-white'>No lines matched.</p></div>")
+                        $(container).append(element);
+                    }
+                    
+                    $( document ).ready(function(){
+                        $('#score').hide()
+                        $.getJSON(url, function(response){
+                            $('#spinner').show()
+                            display_score(response, "#score");
+                            if(response['score'] > 10) {
+                                display_lines(response['lines1'], ".file1");
+                                display_lines(response['lines2'], ".file2");
+                            } else {
+                                display_no_matches(".file1");
+                                display_no_matches(".file2");
+                            }
+                            $('#spinner').hide()
+                            $('#score').show()
+                        });
+                    });
+                
+                </script>
+                
+                <div class="compare-container-holder">
+                    <div id="" class="comparison_container_1" style="width: 50%; height:100%; overflow:hidden; overflow:scroll; padding: 1%;">
+                        <div class="comparison-heading" style="margin-bottom: 0px; color: #183674;">User File</div>
+                        <div class="codecont" style=" width: 100%; height: 100%; padding: 5px;">
+                            <div class="code file1" class="code file2" style=" border-radius: 0; width: 100%; height: 100%;"></div>
+                    </div>
+                    </div>    
+
+                    <div id="" class="comparison_container_2" style="width: 50%; height:100%; overflow:hidden; overflow:scroll; margin-left: 20px; padding:1%">
+                        <div class="comparison-heading" style="margin-bottom: 0px; color: #183674;">Test File</div>
+                        <div class="codecont" style=" width: 100%; height: 100%; font-size: 16px; padding: 5px;">
+                            <div class="code file2" style=" width: 100%; height: 100%; font-weight: normal; border-radius: 0;"></div>
+                        </div>
+                    </div>
+                </div>   
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

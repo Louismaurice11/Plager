@@ -1,0 +1,7 @@
+com.g28.plager
+com.g28.plager.Antlr.Parsers.CParser
+com.g28.plager.Antlr.PreProcessors
+com.g28.plager.Controllers
+com.g28.plager.Logic
+com.g28.plager.Models
+com.g28.plager.SQL

@@ -1,0 +1,2 @@
+This file had been placed here to avoid git deleting empty directories. Please
+ignore it.

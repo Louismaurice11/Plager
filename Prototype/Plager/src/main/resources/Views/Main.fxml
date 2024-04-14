@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.g28.plager.Controllers.MainController">
+   <children>
+      <Pane layoutX="46.0" layoutY="64.0" prefHeight="270.0" prefWidth="234.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+         <children>
+            <TextArea fx:id="m_SourceField" layoutX="11.0" layoutY="22.0" prefHeight="206.0" prefWidth="208.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" />
+            <Button fx:id="m_LoadSource" layoutX="39.0" layoutY="228.0"
+                    mnemonicParsing="false" onAction="#loadSourceCode" prefHeight="27.0" prefWidth="157.0" stylesheets="@stylesheet.css" text="Load File 1">
+               <font>
+                  <Font name="Andale Mono" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.25190839171409607" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.2748091518878937" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Pane layoutX="318.0" layoutY="64.0" prefHeight="270.0" prefWidth="234.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+         <children>
+            <TextArea fx:id="m_PlagiarisedField" layoutX="13.0" layoutY="14.0" prefHeight="206.0" prefWidth="208.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="m_LoadPlagiarised" layoutX="36.0" layoutY="227.0" mnemonicParsing="false" onAction="#loadPlaigarisedCode" prefHeight="27.0" prefWidth="157.0" stylesheets="@stylesheet.css" text="Load File 2">
+               <font>
+                  <Font name="Andale Mono" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.25190839171409607" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.3778626024723053" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Button fx:id="m_PlagerIt" layoutX="222.0" layoutY="354.0" mnemonicParsing="false" onAction="#plagerIt" prefHeight="23.0" prefWidth="157.0" text="Plager it!">
+         <font>
+            <Font name="Andale Mono" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.24809160828590393" />
+               </color>
+            </DropShadow>
+         </effect></Button>
+      <Text fill="#fdfcfc" layoutX="115.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please input your source code files by clicking the buttons below." textAlignment="CENTER" wrappingWidth="374.904296875">
+         <font>
+            <Font name="Andale Mono" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="m_LoadingText" fill="#fdfcfc" layoutX="380.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Running similarity check.." visible="false" wrappingWidth="208.0">
+         <font>
+            <Font name="Andale Mono" size="12.0" />
+         </font>
+      </Text>
+      <Button fx:id="m_ExitButton" layoutX="570.0" layoutY="365.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#closeApplication" prefHeight="23.0" prefWidth="24.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/exit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

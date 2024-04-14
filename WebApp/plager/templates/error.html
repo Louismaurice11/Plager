@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">{{ title }}</h1>
+<hr class="mb-4">
+<p class="text-white mb-4">{{ message }}</p>
+
+<a href="{{ url_for('main.student_dashboard') }}" class="py-2 px-3 rounded-md bg-cyan-600 text-white hover:bg-cyan-400 transition-all">Return to Dashboard</a>
+
+{% endblock content %}

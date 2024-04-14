@@ -1,0 +1,14 @@
+.background{
+-fx-background-color:  linear-gradient(to top left,#1b2c6b, #0e9ab3);
+}
+
+.button{
+-fx-background-color: #19336f;
+-fx-background-radius: 30;
+-fx-text-fill: white;
+}
+
+.pane{
+-fx-background-color: #19336f;
+-fx-background-radius: 30;
+}

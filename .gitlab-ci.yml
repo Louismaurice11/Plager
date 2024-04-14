@@ -1,0 +1,24 @@
+stages:
+    - deploy
+
+deploy:
+    image: alpine:latest
+    stage: deploy
+    tags:
+        - deployment
+    script:
+        - sudo systemctl stop flask.service
+        - ls
+        - sudo cp -R ./WebApp /home/jamesashenden/server/
+        - sudo cp ./DeployConfig/config.py /home/jamesashenden/server/WebApp/plager
+        - sudo cp ./DeployConfig/run.py /home/jamesashenden/server/WebApp
+        - cd /home/jamesashenden/server/WebApp
+        - source env/bin/activate
+        - pip3 install -r requirements.txt
+        - deactivate
+        - sudo systemctl start flask.service
+    environment:
+        name: production
+        url: http://34.148.24.24
+    only:
+        - deploy-webapp

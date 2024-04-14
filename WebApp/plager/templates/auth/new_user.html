@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">Create New User</h1>
+<hr class="mb-4">
+
+<div class="cont-user">
+    <div class="inner-user-cont">
+        <form method="POST" class="user-form">
+            {{ user_form.hidden_tag() }}
+            <table class="user-form-table">
+                <tr>
+                    <td>
+                        {{ user_form.first_name.label }}
+                        {{ user_form.first_name}}
+                    </td>
+                    <td>
+                        {{ user_form.surname.label }}
+                        {{ user_form.surname}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ user_form.email.label }}
+                        {{ user_form.email}}
+                    </td>
+                    <td>
+                        {{ user_form.confirm_email.label }}
+                        {{ user_form.confirm_email}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {{ user_form.school.label }}
+                        {{ user_form.school }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {{user_form.role.label }}
+                        {{ user_form.role }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ user_form.password.label }}
+                        {{ user_form.password }}
+                    </td>
+                    <td>
+                        {{ user_form.confirm_password.label }}
+                        {{ user_form.confirm_password }}
+                    </td>
+                </tr>
+            </table>        
+            {{user_form.submit (class='user-form-button')}}
+        </form>
+
+        
+    </div>
+</div>
+{% endblock content %}

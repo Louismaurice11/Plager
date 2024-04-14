@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">Assignment: {{ assignment.title }}</h1>
+<hr class="mb-4">
+
+<div class="cont flex flex-col justify-start items-start p-4" style="overflow-y: scroll;">
+    
+    <h2 class="font-semibold text-2xl mb-1">{{ assignment.title }}</h2>
+
+    <p class="text-lg text-gray-500">{{ assignment.modules.title }}</p> 
+    <p class="text-md mb-2">{{ assignment.description }}</p>
+
+    <p class="text-md"><span class="font-semibold">Due:</span> {{ assignment.date_due.strftime('%d/%m/%Y %H:%M') }}</p> 
+    <p class="text-md mb-2"><span class="font-semibold">File Type:</span> {{ assignment.file_type.upper() }}</p>
+
+    <p><span class="font-semibold">Total Submissions:</span> {{ submissions|length }}</p>
+            
+    <hr class="my-3 w-full">
+
+    <h3 class="text-2xl font-semibold">Submissions</h3>
+    {% if submissions %}
+        <table class="table-auto w-full text-left">
+            <tr>
+                <th scope="col" class="p-2">Student</th>
+                <th>Status</th>
+                <th>Date Submitted</th>
+                <th>File Name</th>
+                <th>Score</th>
+            </tr>
+            {% for sub in submissions %}
+                <tr class="hover:bg-gray-200 transition-all">
+                    <td scope="row" class="p-2 rounded-l-md">{{ sub.users.name }}</td>
+                    <td><p class="w-fit px-2 py-1 rounded-md text-green-600 bg-green-200">{{ sub.status.title() }}</p></td>
+                    <td>{{ sub.date_submitted.strftime('%d/%m/%Y %H:%M') }}</td>
+                    <td>
+                        <a class="text-cyan-500 transition-all hover:text-cyan-700" href="{{ url_for('static', filename='uploads/'~sub.student_id~'/'~sub.filename) }}" download>
+                            {{ sub.filename }}
+                        </a>
+                    </td>
+                    <td class="text-lg rounded-r-md {% if sub.similarity_score >=70 %} text-red-600 font-semibold {% endif %}">
+                        {{ sub.similarity_score }}%
+                    </td>
+                </tr>
+            {% endfor %}
+            {% for enroll in unsubmitted_users %}
+                <tr class="hover:bg-gray-200 transition-all">
+                    <td scope="row" class="p-2 rounded-l-md">{{ enroll.users.name }}</td>
+                    <td><p class="w-fit px-2 py-1 rounded-md text-red-600 bg-red-200">Not Submitted</p></td>
+                    <td></td>
+                    <td></td>
+                    <td class="rounded-r-md"></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+    <div class="bg-cyan-500 text-white w-full rounded-md p-3">
+        No submissions have been made for this assignment.
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

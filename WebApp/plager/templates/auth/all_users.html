@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">All Users</h1>
+<hr class="mb-4">
+
+<div class="cont">
+    <table class="table-auto w-full text-left">
+        <tr>
+            <th scope="col" class="p-2">ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>School</th>
+            <th>Role</th>
+            <th>Toggle Role</th>
+        </tr>
+        {% for user in users %}
+            <tr class="transition-all">
+                <td scope="row" class="p-2 rounded-l-md">{{ user.id }}</td>
+                <td class="font-bold text-blue-800">{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.school }}</td>
+                <td>{{ user.role.title() }}</td>
+                <td>
+                    <a href="{{ url_for('auth.toggle_role', user_id=user.id) }}" class="py-2 px-3 rounded-md mr-2 bg-cyan-600 text-white hover:bg-cyan-400 transition-all">Toggle Role</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>  
+</div>
+
+{% endblock content %}
+
+<div class="cont">
+    <div class="listhead">
+        <label style="margin-left:1%;">User ID</label>
+        <label style="margin-left:1%;">Full Name</label>
+        <label style="margin-left:9%;">Email</label>
+        <label style="margin-left:7.5%;">School</label>
+        <label style="margin-left:10%;">Role</label>
+        <label style="margin-left:10%;">Toggle Role</label>
+    </div>
+    <div class="listbody">
+        <div class="assignments">
+            {% for user in users %}
+                <div class="list-container">
+                    <div class="list-id">{{ user.id }}</div>
+                    <div class="list-name" >{{ user.name }}</div>
+                    <div class="list-email">{{ user.email }}</div>
+                    <div class="list-school">{{ user.school }}</div>
+                    <div class="list-role">{{ user.role.title() }}</div>
+                    <div class="list-role">{{ user.role.title() }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>  
+</div>

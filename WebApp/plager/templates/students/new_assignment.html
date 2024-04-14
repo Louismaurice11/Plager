@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="font-semibold text-3xl text-white mb-2">Create New Assignment</h1>
+<hr class="mb-4">
+
+{% if assignment_form.errors %}
+    {% for field_name, field_errors in assignment_form.errors|dictsort if field_errors %}
+        {% for error in field_errors %}
+            <div class="bg-red-500 text-white w-full rounded-md p-3 mb-4">
+                <span class="font-semibold">{{ assignment_form[field_name].label }}</span> {{ error }}
+            </div>
+        {% endfor %}
+     {% endfor %}
+{% endif %}
+
+<div class="cont-assign">
+    <div class="inner-assign-cont">
+        <form method="POST" class="assign-form">
+            {{ assignment_form.hidden_tag() }}
+    
+            {{ assignment_form.title.label }}
+            {{ assignment_form.title }}
+            
+            {{ assignment_form.description.label }}
+            {{ assignment_form.description }}
+                    
+            {{ assignment_form.module_id.label }}
+            {{ assignment_form.module_id }}
+        
+            {{ assignment_form.file_type.label }}
+            {{ assignment_form.file_type }}
+        
+            {{ assignment_form.date_due.label }}
+            {{ assignment_form.date_due (class='assign-form-date')}}
+                    
+            {{ assignment_form.submit(class='assign-form-button') }}
+        </form>
+    </div>
+</div>
+{% endblock content %}

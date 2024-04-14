@@ -1,0 +1,1 @@
+defis_leap(yr):returnyr%4==0and(yr%100!=0oryr%400==0)xampleyr=2020ifis_leap(yr):print<missing '{'>("The year {} is a leap year".format(yr))else:print("The year {} is not a leap year".format(yr))<missing '}'>

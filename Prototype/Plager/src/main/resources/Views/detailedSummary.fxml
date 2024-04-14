@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.g28.plager.Controllers.DetailedSummaryController">
+   <children>
+      <Pane layoutX="64.0" layoutY="77.0" prefHeight="301.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.25190839171409607" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Pane layoutX="306.0" layoutY="77.0" prefHeight="301.0" prefWidth="231.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.24809160828590393" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+      <Label layoutX="165.0" layoutY="23.0" text="Detailed Summary" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
