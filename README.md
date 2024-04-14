@@ -61,7 +61,7 @@ https://plager.co.uk/
 
 
 
-# Web App Configuration
+# Web App Configuration - NO LONGER HOSTED
 
 The WebApp is hosted on a VM in Google Cloud at http://34.148.24.24/, which hosts both the web server and the PostgreSQL database.
 
